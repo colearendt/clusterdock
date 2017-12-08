@@ -35,14 +35,18 @@ RUN apt-get -y update \
         libxslt1-dev \
         libz-dev \
         python-dev \
-        python-pip \
+        #python-pip \
+    && curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python \
     && curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz" \
         -o docker.tgz \
     && tar -xzvf docker.tgz \
     && mv docker/* /usr/local/bin/ \
     && rmdir docker \
     && rm docker.tgz \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && mkdir /root/.pip \
+    && pip --version \
+    && python --version
 ADD . /root/clusterdock
 
 # Make sure the SSH private key for each topology has the correct permissions.
