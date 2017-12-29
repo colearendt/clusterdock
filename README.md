@@ -38,3 +38,26 @@ Docker is already installed and the working directory is the root of this Git re
 source ./clusterdock.sh
 clusterdock_run ./bin/start_cluster cdh --help
 ```
+
+
+## Customize
+
+In order to customize the build, you will need to build the clusterdock container manually:
+
+```bash
+docker build -t clusterdock_manual:latest .
+```
+
+Then, you can specify and use it as follows:
+
+```bash
+## start the cluster
+CLUSTERDOCK_IMAGE=clusterdock_manual clusterdock_run ./bin/start_cluster cdh
+
+## remove the cluster
+CLUSTERDOCK_IMAGE=clusterdock_manual clusterdock_run ./bin/housekeeping remove
+
+## destroy everything
+CLUSTERDOCK_IMAGE=clusterdock_manual clusterdock_run ./bin/housekeeping nuke
+
+```
