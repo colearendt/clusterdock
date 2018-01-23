@@ -61,3 +61,11 @@ CLUSTERDOCK_IMAGE=clusterdock_manual clusterdock_run ./bin/housekeeping remove
 CLUSTERDOCK_IMAGE=clusterdock_manual clusterdock_run ./bin/housekeeping nuke
 
 ```
+
+
+## Enable Kerberos
+
+- Install client libraries
+```
+yum install -y krb5-workstation krb5-libs
+```
